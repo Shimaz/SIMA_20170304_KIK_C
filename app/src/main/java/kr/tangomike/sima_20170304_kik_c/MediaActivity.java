@@ -9,6 +9,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.content.res.ResourcesCompat;
 import android.view.View;
 import android.view.WindowManager;
@@ -133,6 +134,10 @@ public class MediaActivity extends Activity implements Runnable{
         sbAudio.setThumb(ResourcesCompat.getDrawable(getResources(), R.drawable.media_btn_thumb_audio, null));
 
 
+        sbAudio.setProgress(10);
+        am.setStreamVolume(AudioManager.STREAM_MUSIC, 10, 0);
+
+
         sbVideo = (SeekBar)findViewById(R.id.sb_video);
         sbVideo.setOnSeekBarChangeListener(onSeekVideo);
         sbVideo.setThumb(ResourcesCompat.getDrawable(getResources(), R.drawable.media_btn_thumb_video, null));
@@ -147,9 +152,13 @@ public class MediaActivity extends Activity implements Runnable{
 
         ivTitle.setBackgroundResource(R.drawable.media_img_bg);
 
-        String path = "android.resource://" + getPackageName() + "/raw/media_mov_1";
+//        String path = "android.resource://" + getPackageName() + "/raw/media_mov_1";
+
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "video_c_1.mp4";
 
         if(vv.isPlaying()) vv.stopPlayback();
+
+
         vv.setVideoURI(Uri.parse(path));
 
 
@@ -209,7 +218,7 @@ public class MediaActivity extends Activity implements Runnable{
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             if(fromUser) vv.seekTo(progress);
-            sbAudio.setProgress(progress);
+            sbVideo.setProgress(progress);
 //            nowTime.setText(getTimeString(progress));
         }
 
