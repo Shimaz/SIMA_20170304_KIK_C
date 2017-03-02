@@ -154,7 +154,7 @@ public class MediaActivity extends Activity implements Runnable{
 
 //        String path = "android.resource://" + getPackageName() + "/raw/media_mov_1";
 
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "video_c_1.mp4";
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/video_c_1.mp4";
 
         if(vv.isPlaying()) vv.stopPlayback();
 
